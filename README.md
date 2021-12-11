@@ -257,6 +257,9 @@ subnet 10.47.1.0 netmask 255.255.255.0 {
 Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE.
 
 ### Jawaban
+```
+iptables -t nat -A POSTROUTING -s 10.47.0.0/16 -o eth0 -j SNAT --to-source 192.168.122.84
+```
 
 ## Soal 2
 Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
