@@ -127,7 +127,7 @@ iface eth0 inet static
 	netmask 255.255.255.248
 	gateway 10.47.0.65
 ```
-- Blueno, cipher, elena, fukurou (dhcp)
+- Blueno, Cipher, Elena, Fukurou (dhcp)
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -137,6 +137,15 @@ iface eth0 inet dhcp
 Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
 ### Jawaban
+Berikut adalah routing yang kami lakukan (semua routing terletak pada Foosha)
+```
+route add -net 10.47.2.0 netmask 255.255.254.0 gw 10.47.0.2
+route add -net 10.47.1.0 netmask 255.255.255.0 gw 10.47.0.2
+route add -net 10.47.0.64 netmask 255.255.255.248 gw 10.47.0.2
+route add -net 10.47.0.128 netmask 255.255.255.128 gw 10.47.0.6
+route add -net 10.47.4.0 netmask 255.255.252.0 gw 10.47.0.6
+route add -net 10.47.0.72 netmask 255.255.255.248 gw 10.47.0.6
+```
 
 ## Soal D
 Tugas berikutnya adalah memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian kalian ingat bahwa kalian harus setting DHCP Relay pada router yang menghubungkannya.
