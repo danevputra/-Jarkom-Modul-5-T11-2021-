@@ -10,6 +10,8 @@ Calvin Manuel | 05311940000049
 Tugas pertama kalian yaitu membuat topologi jaringan sesuai dengan rancangan yang diberikan Luffy
 
 ### Jawaban
+Berikut adalah topologi yang kami buat berdasarkan topologi yang ada pada soal
+<br><img src="ss/1.JPG">
 
 ## Soal B
 Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM. setelah melakukan subnetting
