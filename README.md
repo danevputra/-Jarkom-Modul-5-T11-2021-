@@ -17,6 +17,11 @@ Berikut adalah topologi yang kami buat berdasarkan topologi yang ada pada soal
 Karena kalian telah belajar subnetting dan routing, Luffy ingin meminta kalian untuk membuat topologi tersebut menggunakan teknik CIDR atau VLSM. setelah melakukan subnetting
 
 ### Jawaban
+Pada soal shift kali ini kami menggunakan teknik VLSM untuk melakukan subnetting dan routing, berikut adalah pembagian subnet pada topologi
+<br><img src="ss/vlsm.jpg"><br>
+
+Total terdapat 8 buah subnet dengan 1314 total host, selanjutnya kami membuat pembagiannya menggunakan tree
+<br><img src="ss/tree vlsm.jpg"><br>
 
 ## Soal C
 Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
