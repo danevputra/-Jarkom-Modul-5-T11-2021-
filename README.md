@@ -151,6 +151,107 @@ route add -net 10.47.0.72 netmask 255.255.255.248 gw 10.47.0.6
 Tugas berikutnya adalah memberikan ip pada subnet Blueno, Cipher, Fukurou, dan Elena secara dinamis menggunakan bantuan DHCP server. Kemudian kalian ingat bahwa kalian harus setting DHCP Relay pada router yang menghubungkannya.
 
 ### Jawaban
+#### Konfigurasi DHCP Relay
+- Foosha
+```
+# Defaults for isc-dhcp-relay initscript
+# sourced by /etc/init.d/isc-dhcp-relay
+# installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# What servers should the DHCP relay forward requests to?
+SERVERS="10.47.0.75"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="eth1 eth2"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
+- Guanhao
+```
+# Defaults for isc-dhcp-relay initscript
+# sourced by /etc/init.d/isc-dhcp-relay
+# installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# What servers should the DHCP relay forward requests to?
+SERVERS="10.47.0.75"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="eth1 eth2 eth0"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
+- Water7
+```
+# Defaults for isc-dhcp-relay initscript
+# sourced by /etc/init.d/isc-dhcp-relay
+# installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# What servers should the DHCP relay forward requests to?
+SERVERS="10.47.0.75"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="eth0 eth1 eth2 eth3"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
+
+#### Konfigurasi DHCP Server (Jipangu)
+```
+echo -e 'INTERFACES="eth0"' >> /etc/default/isc-dhcp-server
+echo 'subnet 10.47.0.72 netmask 255.255.255.248{
+}
+
+subnet 10.47.0.128 netmask 255.255.255.128 {
+    range 10.47.0.130 10.47.0.254;
+    option routers 10.47.0.129;
+    option broadcast-address 10.47.0.255;
+    option domain-name-servers 10.47.0.74;
+    default-lease-time 360;
+    max-lease-time 7200;
+}
+
+subnet 10.47.4.0 netmask 255.255.252.0 {
+    range 10.47.4.2 10.47.7.254;
+    option routers 10.47.4.1;
+    option broadcast-address 10.47.7.255;
+    option domain-name-servers 10.47.0.74;
+    default-lease-time 360;
+    max-lease-time 7200;
+}
+
+subnet 10.47.2.0 netmask 255.255.254.0 {
+    range 10.47.2.2 10.47.3.254;
+    option routers 10.47.2.1;
+    option broadcast-address 10.47.3.255;
+    option domain-name-servers 10.47.0.74;
+    default-lease-time 360;
+    max-lease-time 7200;
+}
+
+subnet 10.47.1.0 netmask 255.255.255.0 {
+    range 10.47.1.2 10.47.1.254;
+    option routers 10.47.1.1;
+    option broadcast-address 10.47.1.255;
+    option domain-name-servers 10.47.0.74;
+    default-lease-time 360;
+    max-lease-time 7200;
+}' >> /etc/dhcp/dhcpd.conf
+```
 
 ## Soal 1
 Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE.
