@@ -265,11 +265,16 @@ iptables -t nat -A POSTROUTING -s 10.47.0.0/16 -o eth0 -j SNAT --to-source 192.1
 Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
 
 ### Jawaban
-
+```
+iptables -A FORWARD -d 10.47.0.72/29 -i eth0 -p tcp -m tcp --dport 80 -j DROP
+```
 ## Soal 3
 Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
 
 ### Jawaban
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+```
 
 ## Soal 4
 Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
