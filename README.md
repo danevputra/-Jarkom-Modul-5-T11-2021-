@@ -23,6 +23,116 @@ Pada soal shift kali ini kami menggunakan teknik VLSM untuk melakukan subnetting
 Total terdapat 8 buah subnet dengan 1314 total host, selanjutnya kami membuat pembagiannya menggunakan tree
 <br><img src="ss/tree vlsm.jpg"><br>
 
+Setelah membuat tree, selanjutya kami mengatur IP pada tiap node-nya sebagai berikut
+
+- Foosha
+```
+auto eth0
+iface eth0 inet static
+	address 192.168.122.84
+	netmask 255.255.255.0
+        gateway 192.168.122.1
+
+auto eth1
+iface eth1 inet static
+	address 10.47.0.1
+	netmask 255.255.255.252
+
+auto eth2
+iface eth2 inet static
+	address 10.47.0.5
+	netmask 255.255.255.252
+```
+- Water7
+```
+auto eth0
+iface eth0 inet static
+	address 10.47.0.6
+	netmask 255.255.255.252
+	gateway 10.47.0.5
+
+auto eth1
+iface eth1 inet static
+	address 10.47.4.1
+	netmask 255.255.252.0
+	gateway 10.47.0.5
+
+auto eth2
+iface eth2 inet static
+	address 10.47.0.129
+	netmask 255.255.255.128
+	gateway 10.47.0.5
+
+auto eth3
+iface eth3 inet static
+	address 10.47.0.73
+	netmask 255.255.255.248
+	gateway 10.47.0.5
+```
+- Guanhao
+```
+auto eth0
+iface eth0 inet static
+	address 10.47.0.2
+	netmask 255.255.255.252
+	gateway 10.47.0.1
+
+auto eth1
+iface eth1 inet static
+	address 10.47.2.1
+	netmask 255.255.254.0
+	gateway 10.47.0.1
+
+auto eth2
+iface eth2 inet static
+	address 10.47.1.1
+	netmask 255.255.255.0
+	gateway 10.47.0.1
+
+auto eth3
+iface eth3 inet static
+	address 10.47.0.65
+	netmask 255.255.255.248
+	gateway 10.47.0.1
+```
+- Doriki
+```
+auto eth0
+iface eth0 inet static
+	address 10.47.0.74
+	netmask 255.255.255.248
+	gateway 10.47.0.73
+```
+- Jipangu
+```
+auto eth0
+iface eth0 inet static
+	address 10.47.0.75
+	netmask 255.255.255.248
+	gateway 10.47.0.73
+```
+- Jorge
+```
+auto eth0
+iface eth0 inet static
+	address 10.47.0.66
+	netmask 255.255.255.248
+	gateway 10.47.0.65
+```
+- Maingate
+```
+auto eth0
+iface eth0 inet static
+	address 10.47.0.67
+	netmask 255.255.255.248
+	gateway 10.47.0.65
+```
+- Blueno, cipher, elena, fukurou (dhcp)
+```
+auto eth0
+iface eth0 inet dhcp
+```
+
 ## Soal C
 Kalian juga diharuskan melakukan Routing agar setiap perangkat pada jaringan tersebut dapat terhubung.
 
