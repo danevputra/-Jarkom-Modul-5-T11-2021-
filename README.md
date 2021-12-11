@@ -272,12 +272,25 @@ Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk
 Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
 
 ### Jawaban
+Caranya adalah mengkonfigurasi file pada doriki untuk mensetting pada subnet Blueno dan Cipher seperti berikut
+```
+iptables -A INPUT -s 10.47.0.128/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.47.0.128/25 -j REJECT
+iptables -A INPUT -s 10.47.4.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.47.4.0/22 -j REJECT
+```
 
 ## Soal 5
 Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya. Selain itu di reject
 
-
 ### Jawaban
+Caranya dengan mengkonfigurasi file pada doriki dan memasukkan command seperti berikut
+```
+iptables -A INPUT -s 10.47.2.0/23 -m time --timestart 06:59 --timestop 15:01 -j ACCEPT
+iptables -A INPUT -s 10.47.2.0/23 -j REJECT
+iptables -A INPUT -s 10.47.1.0/24 -m time --timestart 06:59 --timestop 15:01 -j ACCEPT
+iptables -A INPUT -s 10.47.1.0/24 -j REJECT
+```
 
 ## Soal 6
 Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
