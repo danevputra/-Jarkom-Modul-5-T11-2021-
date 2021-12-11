@@ -296,3 +296,10 @@ iptables -A INPUT -s 10.47.1.0/24 -j REJECT
 Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
 
 ### Jawaban
+Caranya dengan menkonfigurasi Guanho seperti berikut
+```
+iptables -A PREROUTING -t nat -d 10.47.0.2 -p tcp --dport 80 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.47.0.66:80
+iptables -t nat -A POSTROUTING -p tcp -d 10.47.0.66 --dport 80 -j SNAT --to-source 10.47.0.65
+iptables -A PREROUTING -t nat -d 10.47.0.2 -p tcp --dport 80 -j DNAT --to-destination 10.47.0.67:80
+iptables -t nat -A POSTROUTING -p tcp -d 10.47.0.67 --dport 80 -j SNAT --to-source 10.47.0.65
+```
